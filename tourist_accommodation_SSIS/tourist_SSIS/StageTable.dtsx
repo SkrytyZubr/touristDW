@@ -1,0 +1,720 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/14/2025 4:31:12 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MICHAL"
+  DTS:CreatorName="MICHAL\micha"
+  DTS:DTSID="{210E48D9-B788-4522-9E33-F872540B8C68}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="StageTable"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{E5DC91A8-AFF3-4397-AE2B-D12000DBE6A1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Destination_ETL]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CE2E9805-7975-4611-9FCA-6F7D2FEFF2F7}"
+      DTS:ObjectName="Destination_ETL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=MICHAL\MSSQLSERVER2019;Initial Catalog=tourist;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Source]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A7B38703-79F3-4538-8C2E-D40015205E06}"
+      DTS:ObjectName="Source">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=MICHAL\MSSQLSERVER2019;Initial Catalog=tourist;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-StageTable-{A7B38703-79F3-4538-8C2E-D40015205E06}MICHAL\MSSQLSERVER2019.tourist;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Source_ETL]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BD0A522F-2FEB-4510-8005-2B261C8F286E}"
+      DTS:ObjectName="Source_ETL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=MICHAL\MSSQLSERVER2019;Initial Catalog=tourist;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\create_stageTable"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E3199B8D-F4ED-41E8-9EF5-8B1758449FD0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="create_stageTable"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A7B38703-79F3-4538-8C2E-D40015205E06}"
+          SQLTask:SqlStatementSource="CREATE TABLE Stage_touristAccommodation(&#xA;&#x9;id_stage int identity(1,1) primary key,&#xA;&#x9;freq nvarchar(max) ,&#xA;&#x9;c_resid nvarchar(max) ,&#xA;&#x9;unit nvarchar(max) ,&#xA;&#x9;nace_r2 nvarchar(max) ,&#xA;&#x9;geo nvarchar(max) ,&#xA;&#x9;TIME_PERIOD nvarchar(max) ,&#xA;&#x9;OBS_VALUE int NULL&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\delete_stageTable"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5AF5B91A-5CA3-4858-9469-767D8B91B540}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="delete_stageTable"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A7B38703-79F3-4538-8C2E-D40015205E06}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Stage_touristAccommodation', 'U') IS NOT NULL &#xA;  DROP TABLE dbo.Stage_touristAccommodation; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ETL_stageTable"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F49C115B-C70D-4286-B8B5-517F06043C77}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL_stageTable"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL_stageTable\get_rawData"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="get_rawData"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[rawData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL_stageTable\get_rawData.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Source_ETL]"
+                  connectionManagerRefId="Package.ConnectionManagers[Source_ETL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[DATAFLOW]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[DATAFLOW]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[DATAFLOW]"
+                      name="DATAFLOW"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[LAST_UPDATE]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[LAST_UPDATE]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[LAST_UPDATE]"
+                      name="LAST_UPDATE"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[freq]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[freq]"
+                      name="freq"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[c_resid]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[c_resid]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[c_resid]"
+                      name="c_resid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[unit]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[unit]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[unit]"
+                      name="unit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[nace_r2]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[nace_r2]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[nace_r2]"
+                      name="nace_r2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[geo]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[geo]"
+                      name="geo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[TIME_PERIOD]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[TIME_PERIOD]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[TIME_PERIOD]"
+                      name="TIME_PERIOD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[DATAFLOW]"
+                      dataType="nText"
+                      name="DATAFLOW" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[LAST_UPDATE]"
+                      dataType="dbTimeStamp2"
+                      name="LAST_UPDATE"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      dataType="nText"
+                      name="freq" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[c_resid]"
+                      dataType="nText"
+                      name="c_resid" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[unit]"
+                      dataType="nText"
+                      name="unit" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[nace_r2]"
+                      dataType="nText"
+                      name="nace_r2" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      dataType="nText"
+                      name="geo" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[TIME_PERIOD]"
+                      dataType="nText"
+                      name="TIME_PERIOD" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      dataType="i4"
+                      name="OBS_VALUE" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      dataType="nText"
+                      name="OBS_FLAG" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[DATAFLOW]"
+                      dataType="nText"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[DATAFLOW]"
+                      name="DATAFLOW" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[LAST_UPDATE]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[LAST_UPDATE]"
+                      name="LAST_UPDATE"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      dataType="nText"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      name="freq" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[c_resid]"
+                      dataType="nText"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[c_resid]"
+                      name="c_resid" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[unit]"
+                      dataType="nText"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[unit]"
+                      name="unit" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[nace_r2]"
+                      dataType="nText"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[nace_r2]"
+                      name="nace_r2" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      dataType="nText"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      name="geo" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[TIME_PERIOD]"
+                      dataType="nText"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[TIME_PERIOD]"
+                      name="TIME_PERIOD" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      dataType="nText"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL_stageTable\put_into_stageTable"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="put_into_stageTable"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stage_touristAccommodation]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL_stageTable\put_into_stageTable.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Destination_ETL]"
+                  connectionManagerRefId="Package.ConnectionManagers[Destination_ETL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[freq]"
+                      cachedDataType="nText"
+                      cachedName="freq"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[freq]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[freq]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[c_resid]"
+                      cachedDataType="nText"
+                      cachedName="c_resid"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[c_resid]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[c_resid]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[unit]"
+                      cachedDataType="nText"
+                      cachedName="unit"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[unit]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[unit]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[nace_r2]"
+                      cachedDataType="nText"
+                      cachedName="nace_r2"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[nace_r2]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[nace_r2]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[geo]"
+                      cachedDataType="nText"
+                      cachedName="geo"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[geo]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[TIME_PERIOD]"
+                      cachedDataType="nText"
+                      cachedName="TIME_PERIOD"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[TIME_PERIOD]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[TIME_PERIOD]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[OBS_VALUE]"
+                      cachedDataType="i4"
+                      cachedName="OBS_VALUE"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[OBS_VALUE]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_VALUE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[id_stage]"
+                      dataType="i4"
+                      name="id_stage" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[freq]"
+                      dataType="nText"
+                      name="freq" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[c_resid]"
+                      dataType="nText"
+                      name="c_resid" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[unit]"
+                      dataType="nText"
+                      name="unit" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[nace_r2]"
+                      dataType="nText"
+                      name="nace_r2" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
+                      dataType="nText"
+                      name="geo" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[TIME_PERIOD]"
+                      dataType="nText"
+                      name="TIME_PERIOD" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[OBS_VALUE]"
+                      dataType="i4"
+                      name="OBS_VALUE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL_stageTable\put_into_stageTable.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\put_into_stageTable.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\put_into_stageTable.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL_stageTable.Paths[OLE DB Source Output]"
+              endId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{EDBD41DE-4F58-4965-964B-0B680BDE4682}"
+      DTS:From="Package\delete_stageTable"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\create_stageTable" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6F8A6DF1-9ABB-457E-95FB-C7D24DA8A2D7}"
+      DTS:From="Package\create_stageTable"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ETL_stageTable" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165.333333333334,42.6666666666667"
+          Id="Package\create_stageTable"
+          TopLeft="280.624987455086,32.4999984502792" />
+        <NodeLayout
+          Size="165.333333333334,42.6666666666667"
+          Id="Package\delete_stageTable"
+          TopLeft="39.3749982398001,33.7999983882904" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="204.708331573133,54.4833317526181">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.9166558819526,0"
+              Start="0,0"
+              End="68.4166558819526,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68.4166558819526,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\ETL_stageTable"
+          TopLeft="532.499976195396,33.1499984192849" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="445.958320788419,54.1583317681154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86.5416554069765,0"
+              Start="0,0"
+              End="79.0416554069765,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="79.0416554069765,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETL_stageTable">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,42.6666666666667"
+          Id="Package\ETL_stageTable\get_rawData"
+          TopLeft="150.624993266538,68.2499967455865" />
+        <NodeLayout
+          Size="176,42.6666666666667"
+          Id="Package\ETL_stageTable\put_into_stageTable"
+          TopLeft="139.999993741512,187.849991042614" />
+        <EdgeLayout
+          Id="Package\ETL_stageTable.Paths[OLE DB Source Output]"
+          TopLeft="224.312493504025,110.916663412253">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76.9333276303612"
+              Start="0,0"
+              End="0,69.4333276303612">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.4333276303612" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL_stageTable\get_rawData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL_stageTable\put_into_stageTable">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
