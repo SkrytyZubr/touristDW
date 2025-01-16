@@ -1,0 +1,190 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="9db27888-3ce8-4cdc-a7a2-86ac0677e292" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Tourist_view</ID>
+  <Name>Tourist_view</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout />
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>0</DiagramViewPortLeft>
+            <DiagramViewPortTop>0</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>Tourist</DataSourceID>
+  <Schema>
+    <xs:schema id="Tourist_view" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Tourist_view" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="0929e29e-bfb0-43a6-9fda-c9dbddf28483">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dbo_Fact" msprop:DbTableName="Fact" msprop:FriendlyName="Fact" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="7defbf50-07c6-46c4-a946-7a63145b807c">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id_fact" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id_fact" msprop:DbColumnName="id_fact" msprop:design-time-name="cd9bdbaf-e06e-442a-a697-ebdde269d07c" type="xs:int" />
+                  <xs:element name="id_time" msprop:FriendlyName="id_time" msprop:DbColumnName="id_time" msprop:design-time-name="5770b390-705b-400d-bd9c-1d68f6c1673e" type="xs:int" minOccurs="0" />
+                  <xs:element name="id_geo" msprop:FriendlyName="id_geo" msprop:DbColumnName="id_geo" msprop:design-time-name="4b0b41e0-8371-4c47-af89-57b7b440d700" type="xs:int" minOccurs="0" />
+                  <xs:element name="id_accommodation" msprop:FriendlyName="id_accommodation" msprop:DbColumnName="id_accommodation" msprop:design-time-name="2744b904-d43d-4728-b7ed-e8161621c4ae" type="xs:int" minOccurs="0" />
+                  <xs:element name="id_unit" msprop:FriendlyName="id_unit" msprop:DbColumnName="id_unit" msprop:design-time-name="07bcf711-9c45-474f-b99d-e24d3336a0cc" type="xs:int" minOccurs="0" />
+                  <xs:element name="id_residency" msprop:FriendlyName="id_residency" msprop:DbColumnName="id_residency" msprop:design-time-name="7996b6a6-f90c-4573-af7b-a3bc883c1863" type="xs:int" minOccurs="0" />
+                  <xs:element name="OBS_VALUE" msprop:FriendlyName="OBS_VALUE" msprop:DbColumnName="OBS_VALUE" msprop:design-time-name="3f7ee02c-d3c5-43ef-b2ba-7db757a5cd89" type="xs:int" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimTime" msprop:DbTableName="dimTime" msprop:FriendlyName="dimTime" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="e2e66e24-70fa-4079-bce5-f6609abc7f4d">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id_time" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id_time" msprop:DbColumnName="id_time" msprop:design-time-name="4e45995c-fc5b-4f9b-8119-617345060382" type="xs:int" />
+                  <xs:element name="Time_period" msprop:FriendlyName="Time_period" msprop:DbColumnName="Time_period" msprop:design-time-name="d3ec7180-0709-483b-b800-f0aa128e578f" type="xs:string" minOccurs="0" />
+                  <xs:element name="Year" msprop:FriendlyName="Year" msprop:DbColumnName="Year" msprop:design-time-name="b988c1af-fc8c-483a-95a9-83d83d44f467" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Month" msprop:FriendlyName="Month" msprop:DbColumnName="Month" msprop:design-time-name="51a681d7-a0a7-444e-b6e7-b39771b3d3e8" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Month_name" msprop:FriendlyName="Month_name" msprop:DbColumnName="Month_name" msprop:design-time-name="2337b9d7-3d4e-4fca-9ff0-a4730ed364d3" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Quarter" msprop:FriendlyName="Quarter" msprop:DbColumnName="Quarter" msprop:design-time-name="bef50ae9-ffb5-4a07-81ac-d85a3a89975a" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Quarter_name" msprop:FriendlyName="Quarter_name" msprop:DbColumnName="Quarter_name" msprop:design-time-name="4566d06a-a2d7-47b7-9955-803e2129708d" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimGeo" msprop:DbTableName="dimGeo" msprop:FriendlyName="dimGeo" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="b5abb916-0498-4e32-82cc-5d017771136c">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id_geo" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id_geo" msprop:DbColumnName="id_geo" msprop:design-time-name="19834c55-f644-4d10-9c5e-033108e41548" type="xs:int" />
+                  <xs:element name="Geo_name" msprop:FriendlyName="Geo_name" msprop:DbColumnName="Geo_name" msprop:design-time-name="2ac9d6d4-b8a4-493e-b03f-0fd0580412a7" type="xs:string" minOccurs="0" />
+                  <xs:element name="Geo_code" msprop:FriendlyName="Geo_code" msprop:DbColumnName="Geo_code" msprop:design-time-name="46637ac8-46fe-4b0c-8acc-110e78695a16" type="xs:string" minOccurs="0" />
+                  <xs:element name="Geo_region" msprop:FriendlyName="Geo_region" msprop:DbColumnName="Geo_region" msprop:design-time-name="fee932d4-1785-4f28-a9a6-32045fad2388" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimResidency" msprop:DbTableName="dimResidency" msprop:FriendlyName="dimResidency" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="81f64be7-24ea-43cc-bcad-89052229c1ba">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id_residency" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id_residency" msprop:DbColumnName="id_residency" msprop:design-time-name="220c3011-2baf-4dad-a47c-f00a2738125c" type="xs:int" />
+                  <xs:element name="residency_code" msprop:FriendlyName="residency_code" msprop:DbColumnName="residency_code" msprop:design-time-name="5e21063b-45c2-41f8-846e-c5013e819763" type="xs:string" minOccurs="0" />
+                  <xs:element name="residency_description" msprop:FriendlyName="residency_description" msprop:DbColumnName="residency_description" msprop:design-time-name="e7c30e37-7674-44a1-80aa-c60907ecd70b" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimAccommodation" msprop:DbTableName="dimAccommodation" msprop:FriendlyName="dimAccommodation" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="278f3bd6-8048-49a8-9df5-53a11af9b0db">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id_accommodation" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id_accommodation" msprop:DbColumnName="id_accommodation" msprop:design-time-name="2ba46ae7-2595-4d36-8dc9-d8439380fa91" type="xs:int" />
+                  <xs:element name="Accommodation" msprop:FriendlyName="Accommodation" msprop:DbColumnName="Accommodation" msprop:design-time-name="783fa08e-33fc-4a56-b976-fb33b8539a0c" type="xs:string" minOccurs="0" />
+                  <xs:element name="Accommodation_description" msprop:FriendlyName="Accommodation_description" msprop:DbColumnName="Accommodation_description" msprop:design-time-name="5746f7fd-0470-432b-a180-c11e08c8dc4a" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimUnit" msprop:DbTableName="dimUnit" msprop:FriendlyName="dimUnit" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="617cfb9a-65c4-4411-9a00-2fb48a042a2c">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id_unit" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id_unit" msprop:DbColumnName="id_unit" msprop:design-time-name="79a657ea-b695-43cc-b3d7-ee17893ab65c" type="xs:int" />
+                  <xs:element name="unit" msprop:FriendlyName="unit" msprop:DbColumnName="unit" msprop:design-time-name="15759ec8-4732-47bf-9fb8-e1ebcaa11d67" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_Fact" />
+          <xs:field xpath="id_fact" />
+        </xs:unique>
+        <xs:unique name="dbo_dimTime_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimTime" />
+          <xs:field xpath="id_time" />
+        </xs:unique>
+        <xs:unique name="dbo_dimGeo_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimGeo" />
+          <xs:field xpath="id_geo" />
+        </xs:unique>
+        <xs:unique name="dbo_dimResidency_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimResidency" />
+          <xs:field xpath="id_residency" />
+        </xs:unique>
+        <xs:unique name="dbo_dimAccommodation_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimAccommodation" />
+          <xs:field xpath="id_accommodation" />
+        </xs:unique>
+        <xs:unique name="dbo_dimUnit_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimUnit" />
+          <xs:field xpath="id_unit" />
+        </xs:unique>
+        <xs:keyref name="FK__Fact__id_residen__4AC307E8" refer="dbo_dimResidency_Constraint1">
+          <xs:selector xpath=".//dbo_Fact" />
+          <xs:field xpath="id_residency" />
+        </xs:keyref>
+        <xs:keyref name="FK__Fact__id_unit__49CEE3AF" refer="dbo_dimUnit_Constraint1">
+          <xs:selector xpath=".//dbo_Fact" />
+          <xs:field xpath="id_unit" />
+        </xs:keyref>
+        <xs:keyref name="FK__Fact__id_geo__47E69B3D" refer="dbo_dimGeo_Constraint1">
+          <xs:selector xpath=".//dbo_Fact" />
+          <xs:field xpath="id_geo" />
+        </xs:keyref>
+        <xs:keyref name="FK__Fact__id_accommo__48DABF76" refer="dbo_dimAccommodation_Constraint1">
+          <xs:selector xpath=".//dbo_Fact" />
+          <xs:field xpath="id_accommodation" />
+        </xs:keyref>
+        <xs:keyref name="FK__Fact__id_time__46F27704" refer="dbo_dimTime_Constraint1">
+          <xs:selector xpath=".//dbo_Fact" />
+          <xs:field xpath="id_time" />
+        </xs:keyref>
+      </xs:element>
+    </xs:schema>
+    <Tourist_view xmlns="" />
+  </Schema>
+</DataSourceView>

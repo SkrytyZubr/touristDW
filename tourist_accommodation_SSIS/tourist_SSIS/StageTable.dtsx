@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="StageTable"
   DTS:PackageType="5"
-  DTS:VersionBuild="47"
-  DTS:VersionGUID="{C78806D2-856C-4248-B418-901E8B8BEE04}">
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{3A08F96D-AC3D-4AAB-AF48-5AAAC4622B8C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -70,7 +70,7 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A7B38703-79F3-4538-8C2E-D40015205E06}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="CREATE TABLE Stage_touristAccommodation(&#xA;&#x9;id_stage int identity(1,1) primary key,&#xA;&#x9;id_time int,&#xA;&#x9;id_geo int,&#xA;&#x9;id_accommodation int,&#xA;&#x9;id_unit int,&#xA;&#x9;id_residency int,&#xA;&#x9;freq nvarchar(max) ,&#xA;&#x9;c_resid nvarchar(max) ,&#xA;&#x9;unit nvarchar(max) ,&#xA;&#x9;nace_r2 nvarchar(max) ,&#xA;&#x9;geo nvarchar(max) ,&#xA;&#x9;time_period nvarchar(max) ,&#xA;&#x9;OBS_VALUE int NULL&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="CREATE TABLE Stage_touristAccommodation(&#xA;&#x9;id_stage int identity(1,1) primary key,&#xA;&#x9;id_time int,&#xA;&#x9;id_geo int,&#xA;&#x9;id_accommodation int,&#xA;&#x9;id_unit int,&#xA;&#x9;id_residency int,&#xA;&#x9;freq nvarchar(max) ,&#xA;&#x9;c_resid nvarchar(max) ,&#xA;&#x9;unit nvarchar(max) ,&#xA;&#x9;nace_r2 nvarchar(max) ,&#xA;&#x9;geo nvarchar(max) ,&#xA;&#x9;time_period nvarchar(max) ,&#xA;&#x9;OBS_VALUE bigint NULL&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
