@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="StageTable"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{E5DC91A8-AFF3-4397-AE2B-D12000DBE6A1}">
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{C78806D2-856C-4248-B418-901E8B8BEE04}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -69,7 +69,8 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A7B38703-79F3-4538-8C2E-D40015205E06}"
-          SQLTask:SqlStatementSource="CREATE TABLE Stage_touristAccommodation(&#xA;&#x9;id_stage int identity(1,1) primary key,&#xA;&#x9;freq nvarchar(max) ,&#xA;&#x9;c_resid nvarchar(max) ,&#xA;&#x9;unit nvarchar(max) ,&#xA;&#x9;nace_r2 nvarchar(max) ,&#xA;&#x9;geo nvarchar(max) ,&#xA;&#x9;TIME_PERIOD nvarchar(max) ,&#xA;&#x9;OBS_VALUE int NULL&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="CREATE TABLE Stage_touristAccommodation(&#xA;&#x9;id_stage int identity(1,1) primary key,&#xA;&#x9;id_time int,&#xA;&#x9;id_geo int,&#xA;&#x9;id_accommodation int,&#xA;&#x9;id_unit int,&#xA;&#x9;id_residency int,&#xA;&#x9;freq nvarchar(max) ,&#xA;&#x9;c_resid nvarchar(max) ,&#xA;&#x9;unit nvarchar(max) ,&#xA;&#x9;nace_r2 nvarchar(max) ,&#xA;&#x9;geo nvarchar(max) ,&#xA;&#x9;time_period nvarchar(max) ,&#xA;&#x9;OBS_VALUE int NULL&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -165,25 +166,6 @@
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[DATAFLOW]"
-                      dataType="nText"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[DATAFLOW]"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[DATAFLOW]"
-                      name="DATAFLOW"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[LAST_UPDATE]"
-                      dataType="dbTimeStamp2"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[LAST_UPDATE]"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[LAST_UPDATE]"
-                      name="LAST_UPDATE"
-                      scale="7"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[freq]"
                       dataType="nText"
                       errorOrTruncationOperation="Conversion"
@@ -246,15 +228,6 @@
                       lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
                       name="OBS_VALUE"
                       truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
-                      dataType="nText"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
-                      name="OBS_FLAG"
-                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -307,17 +280,6 @@
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[DATAFLOW]"
-                      dataType="nText"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[DATAFLOW]"
-                      name="DATAFLOW" />
-                    <outputColumn
-                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[LAST_UPDATE]"
-                      dataType="dbTimeStamp2"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[LAST_UPDATE]"
-                      name="LAST_UPDATE"
-                      scale="7" />
-                    <outputColumn
                       refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[freq]"
                       dataType="nText"
                       lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[freq]"
@@ -352,11 +314,6 @@
                       dataType="i4"
                       lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
                       name="OBS_VALUE" />
-                    <outputColumn
-                      refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
-                      dataType="nText"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
-                      name="OBS_FLAG" />
                     <outputColumn
                       refId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -477,17 +434,17 @@
                       externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
                       lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[geo]" />
                     <inputColumn
-                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[TIME_PERIOD]"
-                      cachedDataType="nText"
-                      cachedName="TIME_PERIOD"
-                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[TIME_PERIOD]"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[TIME_PERIOD]" />
-                    <inputColumn
                       refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[OBS_VALUE]"
                       cachedDataType="i4"
                       cachedName="OBS_VALUE"
                       externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[OBS_VALUE]"
                       lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[TIME_PERIOD]"
+                      cachedDataType="nText"
+                      cachedName="TIME_PERIOD"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[time_period]"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[TIME_PERIOD]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -516,13 +473,33 @@
                       dataType="nText"
                       name="geo" />
                     <externalMetadataColumn
-                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[TIME_PERIOD]"
-                      dataType="nText"
-                      name="TIME_PERIOD" />
-                    <externalMetadataColumn
                       refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[OBS_VALUE]"
                       dataType="i4"
                       name="OBS_VALUE" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[time_period]"
+                      dataType="nText"
+                      name="time_period" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[id_time]"
+                      dataType="i4"
+                      name="id_time" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[id_geo]"
+                      dataType="i4"
+                      name="id_geo" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[id_accommodation]"
+                      dataType="i4"
+                      name="id_accommodation" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[id_unit]"
+                      dataType="i4"
+                      name="id_unit" />
+                    <externalMetadataColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[id_residency]"
+                      dataType="i4"
+                      name="id_residency" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -575,7 +552,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{6F8A6DF1-9ABB-457E-95FB-C7D24DA8A2D7}"
+      DTS:DTSID="{D061F7B0-0BB5-450F-A361-4529E04774FF}"
       DTS:From="Package\create_stageTable"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -601,6 +578,10 @@
           Size="165.333333333334,42.6666666666667"
           Id="Package\delete_stageTable"
           TopLeft="39.3749982398001,33.7999983882904" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\ETL_stageTable"
+          TopLeft="536.249976027758,31.1999985122683" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="204.708331573133,54.4833317526181">
@@ -623,24 +604,20 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="154.666666666667,42.6666666666667"
-          Id="Package\ETL_stageTable"
-          TopLeft="532.499976195396,33.1499984192849" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="445.958320788419,54.1583317681154">
+          TopLeft="445.958320788419,53.1833318146071">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="86.5416554069765,0"
+              EndConnector="90.291655239339,0"
               Start="0,0"
-              End="79.0416554069765,0">
+              End="82.791655239339,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="79.0416554069765,0" />
+                    End="82.791655239339,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -658,27 +635,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="140,42.6666666666667"
-          Id="Package\ETL_stageTable\get_rawData"
-          TopLeft="150.624993266538,68.2499967455865" />
-        <NodeLayout
           Size="176,42.6666666666667"
           Id="Package\ETL_stageTable\put_into_stageTable"
-          TopLeft="139.999993741512,187.849991042614" />
+          TopLeft="138.749993797391,233.999988842011" />
+        <NodeLayout
+          Size="140,42.6666666666667"
+          Id="Package\ETL_stageTable\get_rawData"
+          TopLeft="152.499993182719,68.2499967455865" />
         <EdgeLayout
           Id="Package\ETL_stageTable.Paths[OLE DB Source Output]"
-          TopLeft="224.312493504025,110.916663412253">
+          TopLeft="224.624993490055,110.916663412253">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,76.9333276303612"
+              EndConnector="0,123.083325429758"
               Start="0,0"
-              End="0,69.4333276303612">
+              End="0,115.583325429758">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,69.4333276303612" />
+                    End="0,115.583325429758" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
