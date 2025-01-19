@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="StageTable"
   DTS:PackageType="5"
-  DTS:VersionBuild="52"
-  DTS:VersionGUID="{0887E586-F7F6-43C4-8438-F0FA642347FA}">
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{BAD87009-EBD5-404D-8EC0-FF6740EC397F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -104,6 +104,288 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\ETL_stageTable\clean_geo"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="clean_geo"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETL_stageTable\clean_geo.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL_stageTable\clean_geo.Inputs[Conditional Split Input].Columns[geo_string]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="geo_string"
+                      lineageId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[geo_string]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL_stageTable\clean_geo.Outputs[Case 1]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 1"
+                  synchronousInputId="Package\ETL_stageTable\clean_geo.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[FINDSTRING]([TRIM](#{Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[geo_string]}),"Euro",1) == 0</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">FINDSTRING(TRIM(geo_string),"Euro",1) == 0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL_stageTable\clean_geo.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\ETL_stageTable\clean_geo.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL_stageTable\clean_geo.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\ETL_stageTable\clean_geo.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_stageTable\clean_geo.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\clean_geo.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\clean_geo.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\clean_geo.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL_stageTable\clean_residency"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="clean_residency"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETL_stageTable\clean_residency.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL_stageTable\clean_residency.Inputs[Conditional Split Input].Columns[c_resid_string]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="c_resid_string"
+                      lineageId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[c_resid_string]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL_stageTable\clean_residency.Outputs[Case 1]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 1"
+                  synchronousInputId="Package\ETL_stageTable\clean_residency.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[FINDSTRING]([TRIM](#{Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[c_resid_string]}),"Total",1) == 0</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">FINDSTRING(TRIM(c_resid_string),"Total",1) == 0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL_stageTable\clean_residency.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\ETL_stageTable\clean_residency.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL_stageTable\clean_residency.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\ETL_stageTable\clean_residency.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_stageTable\clean_residency.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\clean_residency.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\clean_residency.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\clean_residency.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL_stageTable\convert_to_string"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="convert_to_string"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETL_stageTable\convert_to_string.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL_stageTable\convert_to_string.Inputs[Data Conversion Input].Columns[geo]"
+                      cachedDataType="nText"
+                      cachedName="geo"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[geo]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\convert_to_string.Inputs[Data Conversion Input].Columns[c_resid]"
+                      cachedDataType="nText"
+                      cachedName="c_resid"
+                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[c_resid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\ETL_stageTable\convert_to_string.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[geo_string]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="150"
+                      lineageId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[geo_string]"
+                      name="geo_string"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[geo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[c_resid_string]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="150"
+                      lineageId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[c_resid_string]"
+                      name="c_resid_string"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[c_resid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\ETL_stageTable\convert_to_string.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\ETL_stageTable\get_rawData"
               componentClassID="Microsoft.OLEDBSource"
@@ -410,12 +692,6 @@
                       externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[freq]"
                       lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[freq]" />
                     <inputColumn
-                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[c_resid]"
-                      cachedDataType="nText"
-                      cachedName="c_resid"
-                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[c_resid]"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[c_resid]" />
-                    <inputColumn
                       refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[unit]"
                       cachedDataType="nText"
                       cachedName="unit"
@@ -428,12 +704,6 @@
                       externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[nace_r2]"
                       lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[nace_r2]" />
                     <inputColumn
-                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[geo]"
-                      cachedDataType="nText"
-                      cachedName="geo"
-                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
-                      lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[geo]" />
-                    <inputColumn
                       refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[OBS_VALUE]"
                       cachedDataType="i4"
                       cachedName="OBS_VALUE"
@@ -445,6 +715,20 @@
                       cachedName="TIME_PERIOD"
                       externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[time_period]"
                       lineageId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output].Columns[TIME_PERIOD]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[geo_string]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="geo_string"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
+                      lineageId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[geo_string]" />
+                    <inputColumn
+                      refId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].Columns[c_resid_string]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="c_resid_string"
+                      externalMetadataColumnId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input].ExternalColumns[c_resid]"
+                      lineageId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output].Columns[c_resid_string]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -532,8 +816,23 @@
           </components>
           <paths>
             <path
-              refId="Package\ETL_stageTable.Paths[OLE DB Source Output]"
+              refId="Package\ETL_stageTable.Paths[Case 1]"
+              endId="Package\ETL_stageTable\clean_residency.Inputs[Conditional Split Input]"
+              name="Case 1"
+              startId="Package\ETL_stageTable\clean_geo.Outputs[Case 1]" />
+            <path
+              refId="Package\ETL_stageTable.Paths[Case 11]"
               endId="Package\ETL_stageTable\put_into_stageTable.Inputs[OLE DB Destination Input]"
+              name="Case 1"
+              startId="Package\ETL_stageTable\clean_residency.Outputs[Case 1]" />
+            <path
+              refId="Package\ETL_stageTable.Paths[Data Conversion Output]"
+              endId="Package\ETL_stageTable\clean_geo.Inputs[Conditional Split Input]"
+              name="Data Conversion Output"
+              startId="Package\ETL_stageTable\convert_to_string.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\ETL_stageTable.Paths[OLE DB Source Output]"
+              endId="Package\ETL_stageTable\convert_to_string.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\ETL_stageTable\get_rawData.Outputs[OLE DB Source Output]" />
           </paths>
@@ -634,35 +933,165 @@
     design-time-name="Package\ETL_stageTable">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42.6666666666667"
           Id="Package\ETL_stageTable\put_into_stageTable"
-          TopLeft="138.749993797391,233.999988842011" />
+          TopLeft="324.999985471367,379.599981899262" />
         <NodeLayout
           Size="140,42.6666666666667"
           Id="Package\ETL_stageTable\get_rawData"
-          TopLeft="152.499993182719,68.2499967455865" />
+          TopLeft="116.874994775281,66.9499968075753" />
+        <NodeLayout
+          Size="126.666666666667,42.6666666666667"
+          Id="Package\ETL_stageTable\clean_geo"
+          TopLeft="216.874990304932,222.949989368916" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\ETL_stageTable\convert_to_string"
+          TopLeft="158.749992903322,137.799993429184" />
         <EdgeLayout
           Id="Package\ETL_stageTable.Paths[OLE DB Source Output]"
-          TopLeft="224.624993490055,110.916663412253">
+          TopLeft="186.874994775281,109.616663474242">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,123.083325429758"
+              EndConnector="53.2083314613749,28.1833299549422"
               Start="0,0"
-              End="0,115.583325429758">
+              End="53.2083314613749,20.6833299549422">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,115.583325429758" />
+                    End="0,10.0916649774711" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.0916649774711"
+                    Point2="0,14.0916649774711"
+                    Point3="4,14.0916649774711" />
+                  <mssgle:LineSegment
+                    End="49.2083314613749,14.0916649774711" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.2083314613749,14.0916649774711"
+                    Point2="53.2083314613749,14.0916649774711"
+                    Point3="53.2083314613749,18.0916649774711" />
+                  <mssgle:LineSegment
+                    End="53.2083314613749,20.6833299549422" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL_stageTable.Paths[Data Conversion Output]"
+          TopLeft="240.083326236655,180.466660095851">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.1249974016102,42.483329273065"
+              Start="0,0"
+              End="40.1249974016102,34.983329273065">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2416646365325" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.2416646365325"
+                    Point2="0,21.2416646365325"
+                    Point3="4,21.2416646365325" />
+                  <mssgle:LineSegment
+                    End="36.1249974016102,21.2416646365325" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.1249974016102,21.2416646365325"
+                    Point2="40.1249974016102,21.2416646365325"
+                    Point3="40.1249974016102,25.2416646365325" />
+                  <mssgle:LineSegment
+                    End="40.1249974016102,34.983329273065" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\ETL_stageTable\clean_residency"
+          TopLeft="263.124988237396,300.299985680581" />
+        <EdgeLayout
+          Id="Package\ETL_stageTable.Paths[Case 1]"
+          TopLeft="280.208323638266,265.616656035583">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="60.249997932464,34.6833296449983"
+              Start="0,0"
+              End="60.249997932464,27.1833296449983">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.3416648224991" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.3416648224991"
+                    Point2="0,17.3416648224991"
+                    Point3="4,17.3416648224991" />
+                  <mssgle:LineSegment
+                    End="56.249997932464,17.3416648224991" />
+                  <mssgle:CubicBezierSegment
+                    Point1="56.249997932464,17.3416648224991"
+                    Point2="60.249997932464,17.3416648224991"
+                    Point3="60.249997932464,21.3416648224991" />
+                  <mssgle:LineSegment
+                    End="60.249997932464,27.1833296449983" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.906913028732,22.3416648224991,30.436171875,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL_stageTable.Paths[Case 11]"
+          TopLeft="340.45832157073,342.966652347247">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.5416639006377,36.6333295520147"
+              Start="0,0"
+              End="72.5416639006377,29.1333295520147">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.3166647760074" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.3166647760074"
+                    Point2="0,18.3166647760074"
+                    Point3="4,18.3166647760074" />
+                  <mssgle:LineSegment
+                    End="68.5416639006377,18.3166647760074" />
+                  <mssgle:CubicBezierSegment
+                    Point1="68.5416639006377,18.3166647760074"
+                    Point2="72.5416639006377,18.3166647760074"
+                    Point3="72.5416639006377,22.3166647760074" />
+                  <mssgle:LineSegment
+                    End="72.5416639006377,29.1333295520147" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="21.0527460128189,23.3166647760074,30.436171875,9.5537109375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
