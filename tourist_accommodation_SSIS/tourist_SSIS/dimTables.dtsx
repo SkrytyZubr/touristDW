@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="229"
-  DTS:VersionGUID="{3ACDF63D-1CA4-41EE-8D24-5614B34DC972}">
+  DTS:VersionBuild="238"
+  DTS:VersionGUID="{CC2A8311-A233-4A04-BBDB-C6F3F9F61F1D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3261,7 +3261,7 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{359E9E34-A5F8-4130-85AC-87DB9E5368CE}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="INSERT INTO Fact (id_time, id_accommodation, id_geo, id_unit, id_residency, OBS_VALUE)&#xA;SELECT&#xA;&#x9;t.id_time,&#xA;&#x9;a.id_accommodation,&#xA;&#x9;g.id_geo,&#xA;&#x9;u.id_unit,&#xA;&#x9;r.id_residency,&#xA;&#x9;s.OBS_VALUE/100&#xA;FROM&#xA;&#x9;Stage_touristAccommodation AS s&#xA;&#x9;JOIN dimTime AS t ON s.time_period = t.Time_period&#xA;&#x9;JOIN dimAccommodation AS a ON s.nace_r2 = a.Accommodation&#xA;&#x9;JOIN dimGeo AS g ON s.geo = g.Geo_name&#xA;&#x9;JOIN dimUnit AS u ON s.unit = u.unit&#xA;&#x9;JOIN dimResidency AS r ON s.c_resid = r.residency_description" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="INSERT INTO Fact (id_time, id_accommodation, id_geo, id_unit, id_residency, OBS_VALUE)&#xA;SELECT&#xA;&#x9;t.id_time,&#xA;&#x9;a.id_accommodation,&#xA;&#x9;g.id_geo,&#xA;&#x9;u.id_unit,&#xA;&#x9;r.id_residency,&#xA;&#x9;s.OBS_VALUE/10&#xA;FROM&#xA;&#x9;Stage_touristAccommodation AS s&#xA;&#x9;JOIN dimTime AS t ON s.time_period = t.Time_period&#xA;&#x9;JOIN dimAccommodation AS a ON s.nace_r2 = a.Accommodation&#xA;&#x9;JOIN dimGeo AS g ON s.geo = g.Geo_name&#xA;&#x9;JOIN dimUnit AS u ON s.unit = u.unit&#xA;&#x9;JOIN dimResidency AS r ON s.c_resid = r.residency_description" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -3922,7 +3922,7 @@
     design-time-name="Package\ETL_dimAccommodation">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="177.333333333334,42.6666666666667"
           Id="Package\ETL_dimAccommodation\get_nace_r2_column"
@@ -3962,7 +3962,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3984,7 +3986,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4006,7 +4010,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4028,7 +4034,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4064,7 +4072,7 @@
     design-time-name="Package\ETL_dimGeo">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="137.333333333334,42.6666666666667"
           Id="Package\ETL_dimGeo\sort_distinct"
@@ -4108,7 +4116,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4130,7 +4140,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4152,7 +4164,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4174,7 +4188,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4196,7 +4212,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

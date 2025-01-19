@@ -9,7 +9,7 @@
       <am:Name>SSDTRS</am:Name>
       <am:Version>17.11.35327.3</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-01-19T14:14:46.9899141Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-01-19T15:00:35.1540188Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -17,14 +17,14 @@
     <DataSource Name="touristDW">
       <DataSourceReference>touristDW</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>2921c376-d01c-44a1-b4ec-e898d9178460</rd:DataSourceID>
+      <rd:DataSourceID>2b2439b7-27bc-4fee-99e8-443258492b4c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>touristDW</DataSourceName>
-        <CommandText>SELECT NON EMPTY { [Measures].[OBS VALUE] } ON COLUMNS, NON EMPTY { ([Dim Residency].[Residency Code].[Residency Code].ALLMEMBERS * [Dim Time].[Year].[Year].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( { [Dim Unit].[Unit].&amp;[Number] } ) ON COLUMNS FROM [Perspective]) WHERE ( [Dim Unit].[Unit].&amp;[Number] ) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+        <CommandText>SELECT NON EMPTY { [Measures].[OBS VALUE] } ON COLUMNS, NON EMPTY { ([Dim Geo].[Geo Name].[Geo Name].ALLMEMBERS * [Dim Accommodation].[Accommodation].[Accommodation].ALLMEMBERS * [Dim Time].[Month Name].[Month Name].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( { [Dim Unit].[Unit].&amp;[Number] } ) ON COLUMNS FROM [Perspective]) WHERE ( [Dim Unit].[Unit].&amp;[Number] ) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
         <rd:DesignerState>
           <QueryDefinition xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
             <CommandType>MDX</CommandType>
@@ -33,24 +33,35 @@
                 <Items>
                   <Item>
                     <ID xsi:type="Level">
-                      <DimensionName>Dim Residency</DimensionName>
-                      <HierarchyName>Residency Code</HierarchyName>
-                      <HierarchyUniqueName>[Dim Residency].[Residency Code]</HierarchyUniqueName>
-                      <LevelName>Residency Code</LevelName>
-                      <UniqueName>[Dim Residency].[Residency Code].[Residency Code]</UniqueName>
+                      <DimensionName>Dim Geo</DimensionName>
+                      <HierarchyName>Geo Name</HierarchyName>
+                      <HierarchyUniqueName>[Dim Geo].[Geo Name]</HierarchyUniqueName>
+                      <LevelName>Geo Name</LevelName>
+                      <UniqueName>[Dim Geo].[Geo Name].[Geo Name]</UniqueName>
                     </ID>
-                    <ItemCaption>Residency Code</ItemCaption>
+                    <ItemCaption>Geo Name</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>Dim Accommodation</DimensionName>
+                      <HierarchyName>Accommodation</HierarchyName>
+                      <HierarchyUniqueName>[Dim Accommodation].[Accommodation]</HierarchyUniqueName>
+                      <LevelName>Accommodation</LevelName>
+                      <UniqueName>[Dim Accommodation].[Accommodation].[Accommodation]</UniqueName>
+                    </ID>
+                    <ItemCaption>Accommodation</ItemCaption>
                     <UniqueName>true</UniqueName>
                   </Item>
                   <Item>
                     <ID xsi:type="Level">
                       <DimensionName>Dim Time</DimensionName>
-                      <HierarchyName>Year</HierarchyName>
-                      <HierarchyUniqueName>[Dim Time].[Year]</HierarchyUniqueName>
-                      <LevelName>Year</LevelName>
-                      <UniqueName>[Dim Time].[Year].[Year]</UniqueName>
+                      <HierarchyName>Month Name</HierarchyName>
+                      <HierarchyUniqueName>[Dim Time].[Month Name]</HierarchyUniqueName>
+                      <LevelName>Month Name</LevelName>
+                      <UniqueName>[Dim Time].[Month Name].[Month Name]</UniqueName>
                     </ID>
-                    <ItemCaption>Year</ItemCaption>
+                    <ItemCaption>Month Name</ItemCaption>
                     <UniqueName>true</UniqueName>
                   </Item>
                   <Item>
@@ -94,19 +105,23 @@
               </QueryProperties>
             </QuerySpecification>
             <Query>
-              <Statement> SELECT NON EMPTY { [Measures].[OBS VALUE] } ON COLUMNS, NON EMPTY { ([Dim Residency].[Residency Code].[Residency Code].ALLMEMBERS * [Dim Time].[Year].[Year].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( { [Dim Unit].[Unit].&amp;[Number] } ) ON COLUMNS FROM [Perspective]) WHERE ( [Dim Unit].[Unit].&amp;[Number] ) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+              <Statement> SELECT NON EMPTY { [Measures].[OBS VALUE] } ON COLUMNS, NON EMPTY { ([Dim Geo].[Geo Name].[Geo Name].ALLMEMBERS * [Dim Accommodation].[Accommodation].[Accommodation].ALLMEMBERS * [Dim Time].[Month Name].[Month Name].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( { [Dim Unit].[Unit].&amp;[Number] } ) ON COLUMNS FROM [Perspective]) WHERE ( [Dim Unit].[Unit].&amp;[Number] ) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
               <ParameterDefinitions />
             </Query>
           </QueryDefinition>
         </rd:DesignerState>
       </Query>
       <Fields>
-        <Field Name="Residency_Code">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Level" UniqueName="[Dim Residency].[Residency Code].[Residency Code]" /&gt;</DataField>
+        <Field Name="Geo_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Level" UniqueName="[Dim Geo].[Geo Name].[Geo Name]" /&gt;</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Year">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Level" UniqueName="[Dim Time].[Year].[Year]" /&gt;</DataField>
+        <Field Name="Accommodation">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Level" UniqueName="[Dim Accommodation].[Accommodation].[Accommodation]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Month_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Level" UniqueName="[Dim Time].[Month Name].[Month Name]" /&gt;</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="OBS_VALUE">
@@ -127,7 +142,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Porównanie rezydentów i obcych</Value>
+                    <Value>Raport trendów sezonowych</Value>
                     <Style>
                       <FontFamily>Segoe UI Light</FontFamily>
                       <FontSize>24pt</FontSize>
@@ -139,8 +154,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>textbox1</rd:DefaultName>
-            <Height>0.48556in</Height>
-            <Width>5in</Width>
+            <Height>0.43in</Height>
+            <Width>4.39583in</Width>
             <Style>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -189,12 +204,12 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.25694in</Width>
+                  <Width>1.1875in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.32111in</Height>
+                  <Height>0.20306in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -238,27 +253,27 @@
             <TablixColumnHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="matrix1_Residency_Code">
+                  <Group Name="matrix1_Accommodation">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Residency_Code.Value</GroupExpression>
+                      <GroupExpression>=Fields!Accommodation.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Residency_Code.Value</Value>
+                      <Value>=Fields!Accommodation.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>0.29333in</Size>
+                    <Size>0.57111in</Size>
                     <CellContents>
-                      <Textbox Name="Residency_Code">
+                      <Textbox Name="Accommodation">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!Residency_Code.Value</Value>
+                                <Value>=Fields!Accommodation.Value</Value>
                                 <Style />
                               </TextRun>
                             </TextRuns>
@@ -267,7 +282,7 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>Residency_Code</rd:DefaultName>
+                        <rd:DefaultName>Accommodation</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
@@ -288,27 +303,27 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="matrix1_Year">
+                  <Group Name="matrix1_Geo_Name">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Year.Value</GroupExpression>
+                      <GroupExpression>=Fields!Geo_Name.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Year.Value</Value>
+                      <Value>=Fields!Geo_Name.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
                     <Size>1in</Size>
                     <CellContents>
-                      <Textbox Name="Year">
+                      <Textbox Name="Geo_Name">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!Year.Value</Value>
+                                <Value>=Fields!Geo_Name.Value</Value>
                                 <Style />
                               </TextRun>
                             </TextRuns>
@@ -317,7 +332,7 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>Year</rd:DefaultName>
+                        <rd:DefaultName>Geo_Name</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
@@ -338,9 +353,9 @@
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.49944in</Top>
-            <Height>0.61444in</Height>
-            <Width>2.25694in</Width>
+            <Top>0.43in</Top>
+            <Height>0.77417in</Height>
+            <Width>2.1875in</Width>
             <ZIndex>1</ZIndex>
             <Style />
           </Tablix>
@@ -350,22 +365,32 @@
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Residency_Code.Value</GroupExpression>
+                      <GroupExpression>=Fields!Accommodation.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Residency_Code.Value</Value>
+                      <Value>=Fields!Accommodation.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!Residency_Code.Value</Label>
+                  <Label>=Fields!Accommodation.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>OBS VALUE</Label>
+                  <Group Name="Chart1_SeriesGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Month_Name.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Month_Name.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!Month_Name.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -387,8 +412,6 @@
                       <DataElementOutput>Output</DataElementOutput>
                     </ChartDataPoint>
                   </ChartDataPoints>
-                  <Type>Shape</Type>
-                  <Subtype>ExplodedPie</Subtype>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -646,6 +669,7 @@
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>8pt</FontSize>
                 </Style>
+                <Position>TopLeft</Position>
                 <ChartLegendTitle>
                   <Caption />
                   <Style>
@@ -660,7 +684,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Wykres kołowy dla wszytkich lat</Caption>
+                <Caption>Chart Title</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -690,11 +714,372 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.48556in</Top>
-            <Left>2.25694in</Left>
-            <Height>1.68389in</Height>
-            <Width>2.74306in</Width>
+            <Top>0.45778in</Top>
+            <Left>2.20139in</Left>
+            <Height>3.55194in</Height>
+            <Width>6.26389in</Width>
             <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </Chart>
+          <Chart Name="Chart2">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Chart2_CategoryGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Accommodation.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Accommodation.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!Accommodation.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>OBS VALUE</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="OBS_VALUE">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!OBS_VALUE.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Subtype>Doughnut</Subtype>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <Style>
+                  <BackgroundColor>#00ffffff</BackgroundColor>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <Position>TopLeft</Position>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+              </ChartLegend>
+            </ChartLegends>
+            <ChartTitles>
+              <ChartTitle Name="Default">
+                <Caption>Chart Title</Caption>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextAlign>Left</TextAlign>
+                  <VerticalAlign>Top</VerticalAlign>
+                  <Color>#a6a6a6</Color>
+                </Style>
+                <Position>TopLeft</Position>
+              </ChartTitle>
+            </ChartTitles>
+            <Palette>Pacific</Palette>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>0.45778in</Top>
+            <Left>8.46528in</Left>
+            <Height>3.55194in</Height>
+            <Width>3in</Width>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -730,10 +1115,10 @@
                 </Action>
               </Actions>
             </ActionInfo>
-            <Left>11.00694in</Left>
+            <Left>10.46528in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -745,10 +1130,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>3.725in</Height>
+        <Height>8.2175in</Height>
         <Style />
       </Body>
-      <Width>12.00694in</Width>
+      <Width>11.46528in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
@@ -767,5 +1152,5 @@
   <Language>en-US</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>0c477e0c-87ac-4cbc-b335-0b76c03a99b1</rd:ReportID>
+  <rd:ReportID>4b42301d-0410-47bf-982d-a83257586b11</rd:ReportID>
 </Report>

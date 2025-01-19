@@ -9,7 +9,7 @@
       <am:Name>SSDTRS</am:Name>
       <am:Version>17.11.35327.3</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-01-19T00:04:01.2551810Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-01-19T15:16:35.1674515Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -933,7 +933,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>Wróć</Value>
-                    <Style />
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -944,7 +946,7 @@
               <Actions>
                 <Action>
                   <Drillthrough>
-                    <ReportName>Report1</ReportName>
+                    <ReportName>R_menu</ReportName>
                   </Drillthrough>
                 </Action>
               </Actions>
