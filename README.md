@@ -1,11 +1,11 @@
 # Nights spent at tourist accommodation
 
 ## Table of Contents
-- [Project Overview](https://github.com/SkrytyZubr/touristDW/new/master?filename=README.md#project-overview)
-- [Key Objectives](https://github.com/SkrytyZubr/touristDW/new/master?filename=README.md#key-objectives)
-- [Tools Used](https://github.com/SkrytyZubr/touristDW/new/master?filename=README.md#tools-used)
-- [How to Use the Project](https://github.com/SkrytyZubr/touristDW/new/master?filename=README.md#how-to-use-the-project)
-- [Conclusion](https://github.com/SkrytyZubr/touristDW/new/master?filename=README.md#conclusion)
+- [Project Overview](https://github.com/SkrytyZubr/touristDW?tab=readme-ov-file#project-overview)
+- [Key Objectives](https://github.com/SkrytyZubr/touristDW?tab=readme-ov-file#key-objectives)
+- [Tools Used](https://github.com/SkrytyZubr/touristDW?tab=readme-ov-file#tools-used)
+- [How to Use the Project](https://github.com/SkrytyZubr/touristDW?tab=readme-ov-file#how-to-use-the-project)
+- [Conclusion](https://github.com/SkrytyZubr/touristDW?tab=readme-ov-filed#conclusion)
 ## Project Overview
 The purpose of this project is to design and implement a comprehensive Business Intelligence (BI) solution for analyzing and visualizing data sourced from Eurostat's [tour_occ_nim dataset](https://ec.europa.eu/eurostat/databrowser/view/tour_occ_nim__custom_14974055/default/bar?lang=en). This dataset provides detailed statistics on tourist accommodations across various countries, categorized by residency, time, and accommodation types.
 
