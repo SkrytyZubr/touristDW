@@ -1,4 +1,4 @@
-# Nights spent at tourist accommodation
+# Nights spent at tourist accommodation BI
 
 ## Table of Contents
 - [Project Overview](https://github.com/SkrytyZubr/touristDW?tab=readme-ov-file#project-overview)
