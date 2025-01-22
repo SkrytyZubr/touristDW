@@ -51,7 +51,7 @@ The project integrates **SQL Server Integration Services (SSIS)**, **SQL Server 
 
 1. Clone this repository:
    ```bash
-   git clone 
+   git clone https://github.com/SkrytyZubr/Nights-spent-at-tourist-accommodation-BI.git
 2. Prepare the Environment
    - Ensure that Microsoft SQL Server, Visual Studio (Integration and Analysis extentions) are installed on your machine.
    - Restore the raw data into a staging database if necessary.
